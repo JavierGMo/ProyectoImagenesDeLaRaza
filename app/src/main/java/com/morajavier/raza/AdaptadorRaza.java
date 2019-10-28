@@ -23,6 +23,8 @@ public class AdaptadorRaza extends BaseAdapter {
         this.layout = layout;
         this.descripciones = descripciones;
     }
+
+
     @Override
     public int getCount() {
         return this.descripciones.size();

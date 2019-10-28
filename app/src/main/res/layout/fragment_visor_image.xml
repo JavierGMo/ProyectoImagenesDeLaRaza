@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".VisorImageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:id="@+id/fragment_visor"
         android:layout_width="match_parent"

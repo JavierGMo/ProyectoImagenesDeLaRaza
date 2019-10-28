@@ -13,30 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link VisorImageFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link VisorImageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class VisorImageFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+public class VisorImageFragment extends Fragment {
     private int idImg;
     private String contDescript;
+    TextView txtDescripcion;
+    ImageView imgRaza;
 
-    private OnFragmentInteractionListener mListener;
-
-    public VisorImageFragment(int idImg, String contDescrip) {
+    public VisorImageFragment(String contDescript, int idImg) {
         // Required empty public constructor
+        this.contDescript = contDescript;
         this.idImg = idImg;
-        this.contDescript = contDescrip;
     }
 
 
@@ -44,27 +31,20 @@ public class VisorImageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //Recuerden poner los find en su lugar
+        //en mi caso lo puse despues del setImageResource y me mando un error
         View v = inflater.inflate(R.layout.fragment_visor_image, container, false);
-        TextView txtDescripcion = v.findViewById(R.id.xdescripcion);
-        ImageView imgRaza = v.findViewById(R.id.imageViewConte);
+        txtDescripcion = v.findViewById(R.id.txtfragmentdescripcioncont);
+        imgRaza = v.findViewById(R.id.imageViewConte);
         txtDescripcion.setText(this.contDescript);
         imgRaza.setImageResource(this.idImg);
+
+
         return v;
     }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+    /*
+    public void visorChido(String cnt, int idIMG){
+        txtDescripcion.setText(cnt);
+        imgRaza.setImageResource(idIMG);
+    }*/
 }

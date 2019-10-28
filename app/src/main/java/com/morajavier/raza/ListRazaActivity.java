@@ -14,44 +14,35 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ListRazaActivity extends AppCompatActivity{
-    ListView listImageRaza;
-    private ArrayList<Descripciones> descripcionesCont;
+public class ListRazaActivity extends AppCompatActivity implements ListFragment.DataListener{
 
-    //private ArrayList<String> listDescripcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_raza);
-        descripcionesCont = new ArrayList<Descripciones>();
-        listImageRaza = findViewById(R.id.list_image_raza);
-
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "El paso de tiempo"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-
-        AdaptadorRaza adapterRaza = new AdaptadorRaza(this, R.layout.list_item, descripcionesCont);
-        listImageRaza.setAdapter(adapterRaza);
-
-        listImageRaza.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                FragmentManager  manager   =   getSupportFragmentManager ( ) ;
-                FragmentTransaction  ft   =   manager . beginTransaction ( ) ;
-                VisorImageFragment visImg = new VisorImageFragment(descripcionesCont.get(position).getImage(), descripcionesCont.get(position).getDescripcion());
-                ft.replace(R.id.fragment_visor, visImg);
-                //Toast.makeText(ListRazaActivity.this, "Posicion: "+ position + " id: " + id, Toast.LENGTH_SHORT).show();
-            }
-        });
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+        //String containterDesc = descripcionesCont.get(position).getDescripcion();
+        //int idIMG = descripcionesCont.get(position).getImage();
+        //Metemos el fragment de listview en el activity
+        ListFragment listFragment = new ListFragment();
+        ft.replace(R.id.fragmet_vizor, listFragment);
+        ft.commitAllowingStateLoss();
     }
 
+    //comunicacion entre fragments
+    @Override
+    public void sendInfo(String txtcnt, int idimgr) {
+        //nota:configuracion, con el boton de regresar que el fragment de listview se vuelva poner
+        //recibimos el texto y el id de la imagen
+        //y cargamos el fragment del visualizador
+        //remplazamos el otro fragment
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+        VisorImageFragment visorImageFragment = new VisorImageFragment(txtcnt, idimgr);
+        //visorImageFragment.visorChido(txtcnt, idimgr);
+        ft.replace(R.id.fragmet_vizor, visorImageFragment);
+        ft.commitAllowingStateLoss();
+    }
 }
