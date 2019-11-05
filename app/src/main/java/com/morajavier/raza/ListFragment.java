@@ -38,17 +38,17 @@ public class ListFragment extends Fragment {
         descripcionesCont = new ArrayList<Descripciones>();
 
         System.out.println("*************************** " + getContext() + "************************************");
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "El paso de tiempo"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
-        descripcionesCont.add(new Descripciones(R.drawable.buho, "lorem"));
+        descripcionesCont.add(new Descripciones(R.drawable.uno, "Historia de los ultimos 130 mil años"));
+        descripcionesCont.add(new Descripciones(R.drawable.dosraz, "De las selvas cálidas a la edad de hielo"));
+        descripcionesCont.add(new Descripciones(R.drawable.tresr, "De África hacia el resto del mundo"));
+        descripcionesCont.add(new Descripciones(R.drawable.cuatror, "Las miraciones humanas"));
+        descripcionesCont.add(new Descripciones(R.drawable.cincora, "Pruebas de la creatividad humana"));
+        descripcionesCont.add(new Descripciones(R.drawable.seis, "Los dos últimos minutos"));
+        descripcionesCont.add(new Descripciones(R.drawable.siete, "Desaparecen los más grandes"));
+        descripcionesCont.add(new Descripciones(R.drawable.ocho, "Primeros registros de la historia humana"));
+        descripcionesCont.add(new Descripciones(R.drawable.nueve, "Primeras ciudades"));
+        descripcionesCont.add(new Descripciones(R.drawable.diez, "Grandes construcciones"));
+        descripcionesCont.add(new Descripciones(R.drawable.once, "Muy cerca de nuestra época"));
         //uso mi propio adaptador
         //le paso el contexto, busco mis item de la lista(como es algo global se busca directamente en R)
         //le paso mi arraylist
@@ -59,9 +59,9 @@ public class ListFragment extends Fragment {
         listImageRaza.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(getContext(), "Posicion: " + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Posicion: " + position, Toast.LENGTH_SHORT).show();
                 //Aqui envio la informacion al otro callback para visualizar la imagen
-                callback.sendInfo(descripcionesCont.get(position).getDescripcion(),descripcionesCont.get(position).getImage());
+                callback.sendInfo(descripcionesCont.get(position).getDescripcion(),descripcionesCont.get(position).getImage(), position);
             }
         });
         return v;
@@ -86,7 +86,7 @@ public class ListFragment extends Fragment {
 
     //comunicacion entre fragments
     public interface DataListener {
-        void sendInfo(String txtcnt, int idimgr);
+        void sendInfo(String txtcnt, int idimgr, int position);
     }
 
     public void logicaListView(){

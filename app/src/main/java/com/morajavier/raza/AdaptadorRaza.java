@@ -54,7 +54,7 @@ public class AdaptadorRaza extends BaseAdapter {
         TextView textosDesc = viewPersonal.findViewById(R.id.xdescripcion);
         ImageView imgenRaza = viewPersonal.findViewById(R.id.imageViewRaza);
         textosDesc.setText(texto);
-        imgenRaza.setImageResource(R.drawable.buho);
+        imgenRaza.setImageResource(imageID);
         return viewPersonal;
     }
 }

@@ -17,13 +17,15 @@ import android.widget.TextView;
 public class VisorImageFragment extends Fragment {
     private int idImg;
     private String contDescript;
-    TextView txtDescripcion;
+    private String desc;
+    TextView txtDescripcion, textViewDescChida;
     ImageView imgRaza;
 
-    public VisorImageFragment(String contDescript, int idImg) {
+    public VisorImageFragment(String contDescript, int idImg, String desc) {
         // Required empty public constructor
         this.contDescript = contDescript;
         this.idImg = idImg;
+        this.desc = desc;
     }
 
 
@@ -36,8 +38,11 @@ public class VisorImageFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_visor_image, container, false);
         txtDescripcion = v.findViewById(R.id.txtfragmentdescripcioncont);
         imgRaza = v.findViewById(R.id.imageViewConte);
+        textViewDescChida = v.findViewById(R.id.txtfragdescchida);
         txtDescripcion.setText(this.contDescript);
         imgRaza.setImageResource(this.idImg);
+        textViewDescChida.setText(this.desc);
+
 
 
         return v;
